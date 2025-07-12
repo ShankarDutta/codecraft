@@ -1,6 +1,8 @@
+import NavBar from "@/components/NavBar/NavBar";
 import type { Metadata } from "next";
-import "./globals.css";
 import { ReactNode } from "react";
+import "./globals.css";
+import ThemeProvider from "@/components/Theme/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,9 +15,12 @@ type propsname = Readonly<{
 
 const RootLayout = ({ children }: propsname) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <main>{children}</main>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <NavBar />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
